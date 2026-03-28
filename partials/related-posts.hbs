@@ -1,0 +1,16 @@
+{{#get "posts" limit="4" filter="tags:[{{post.tags}}]+id:-{{post.id}}" include="tags,authors" as |related|}}
+    {{#if related}}
+        <div class="related-wrapper gh-outer">
+            <section class="related-posts gh-inner">
+                <h3 class="related-title">
+                    <span class="text">{{t "Ta en pilsner och läs..."}}</span>
+                </h3>
+                <div class="post-feed">
+                    {{#foreach related}}
+                        {{> "loop"}}
+                    {{/foreach}}
+                </div>
+            </section>
+        </div>
+    {{/if}}
+{{/get}}
