@@ -1,0 +1,137 @@
+/* table stuff in posts */
+table.table-recipe {
+    font-family: inherit !important;
+    background: none !important;
+    display: table !important;
+    width: 100% !important;
+}
+tr.stripe {
+    background-color: #393939;
+    color: #fff;
+}
+td {
+    background-image: none !important;
+}
+
+/* main page post hover image effect */
+
+article.post {
+    figure:not(.gh-article-image, .kg-card) {
+        overflow: hidden;
+        position: relative;
+
+        img {
+            transform: scale(1.05);
+            transition:
+                transform 0.4s ease,
+                filter 0.4s ease;
+        }
+
+        figcaption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            font-size: 0.9rem;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.18);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+    }
+
+    &:hover {
+        figure:not(.gh-article-image, .kg-card) {
+            img {
+                transform: scale(1);
+                filter: brightness(0.92);
+            }
+
+            figcaption {
+                transform: translateY(0);
+            }
+
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.post-wrapper {
+    padding: 15px;
+}
+
+/* Post-tag pill */
+.post-tag {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: var(--ghost-accent-color);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+/* Fade in excerpt on hover */
+article.post {
+    .post-excerpt {
+        opacity: 0.6;
+        transition: opacity 0.4s ease;
+    }
+
+    &:hover {
+        .post-excerpt {
+            opacity: 1;
+        }
+    }
+}
+
+/* Animate 'Läs mer' arrow */
+.post-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    &::after {
+        content: "→";
+        display: inline-block;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+    }
+}
+
+article.post:hover {
+    .post-more::after {
+        transform: translateX(5px);
+    }
+}
+
+/* footer */
+
+.gh-foot {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-color: #fff;
+}
+
+/* disable annoying lightbox */
+.kg-image {
+    pointer-events: none;
+    cursor: default;
+}

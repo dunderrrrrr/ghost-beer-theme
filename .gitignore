@@ -1,0 +1,4 @@
+.ghost-local/
+.npm-global/
+theme/node_modules/
+theme/dist/
