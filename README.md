@@ -12,3 +12,9 @@ $ cd theme && npm install && npm run dev (css reload)
 ...
 $ ghost-down
 ```
+
+#### build zip
+```shell
+$ cd theme
+$ npm run zip
+```
