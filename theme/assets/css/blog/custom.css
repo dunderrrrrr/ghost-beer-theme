@@ -74,18 +74,31 @@ article.post {
     padding: 15px;
 }
 
-/* Post-tag pill */
+/* Post-tag pill — matches nav style */
 .post-tag {
     display: inline-block;
-    padding: 0.2rem 0.65rem;
-    border-radius: 999px;
-    background: var(--beer-accent);
-    color: #fff;
-    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    background: rgba(156, 130, 94, 0.15);
+    color: var(--beer-accent);
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+}
+
+.post-tag:hover {
+    background: rgba(156, 130, 94, 0.25);
+}
+
+body.dark-theme .post-tag {
+    background: rgba(156, 130, 94, 0.18);
+    color: #b89a78;
+}
+
+body.dark-theme .post-tag:hover {
+    background: rgba(156, 130, 94, 0.28);
 }
 
 /* Fade in excerpt on hover */
@@ -120,6 +133,47 @@ article.post:hover {
     .post-more::after {
         transform: translateX(5px);
     }
+}
+
+/* Card lift on hover */
+article.post {
+    transition: transform 0.25s ease;
+}
+
+article.post:hover {
+    transform: translateY(-3px);
+}
+
+/* Accent line animates in at bottom of card on hover */
+.post-footer {
+    position: relative;
+}
+
+.post-footer::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--beer-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+article.post:hover .post-footer::after {
+    transform: scaleX(1);
+}
+
+/* Logo subtle accent on hover */
+.gh-head-logo {
+    transition: color 0.2s ease;
+}
+
+.gh-head-logo:hover {
+    color: var(--beer-accent) !important;
+    opacity: 1;
 }
 
 /* footer — background/border set in basics.css */
