@@ -11,7 +11,9 @@
 </head>
 
 <body class="{{body_class}}{{{block "body_class"}}} is-head-{{#match @custom.navigation_layout "Logo on the left"}}left-logo{{else match @custom.navigation_layout "Logo in the middle"}}middle-logo{{else}}stacked{{/match}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}">
-<script>if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark-theme');</script>
+<script>if(localStorage.getItem('theme')!=='light')document.body.classList.add('dark-theme');</script>
+{{#is "post, page"}}<div id="reading-progress"></div>{{/is}}
+<button id="scroll-top" aria-label="Scroll to top"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
 <div class="gh-site">
 
     <header id="gh-head" class="gh-head gh-outer">

@@ -127,6 +127,22 @@ article.post {
     padding: 15px;
 }
 
+.post-meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.post-date {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
 /* Post-tag pill — matches nav style */
 .post-tag {
     display: inline-block;
@@ -188,12 +204,12 @@ article.post:hover {
     }
 }
 
-/* Card lift on hover */
-article.post {
+/* Card lift on hover — index feed only */
+.post-feed article.post {
     transition: transform 0.25s ease;
 }
 
-article.post:hover {
+.post-feed article.post:hover {
     transform: translateY(-3px);
 }
 
@@ -375,6 +391,149 @@ body.dark-theme .result-card {
 
 body.dark-theme .result-card:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   Text selection
+   ============================================================ */
+
+::selection {
+    background: rgba(156, 130, 94, 0.25);
+    color: inherit;
+}
+
+/* ============================================================
+   Article meta (author / date / tag line)
+   ============================================================ */
+
+.gh-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.6rem !important;
+}
+
+/* ============================================================
+   Article excerpt — lead paragraph style
+   ============================================================ */
+
+.gh-article-excerpt {
+    font-size: 1.9rem !important;
+    color: var(--secondary-text-color);
+    border-left: 3px solid var(--beer-accent);
+    padding-left: 1.2rem;
+    margin-top: 1.2rem !important;
+    font-style: italic;
+}
+
+
+/* ============================================================
+   Scroll to top button
+   ============================================================ */
+
+#scroll-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--beer-accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#scroll-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#scroll-top:hover {
+    background: var(--beer-accent-light);
+}
+
+#scroll-top svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ============================================================
+   Reading progress bar (post pages)
+   ============================================================ */
+
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--beer-accent);
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+
+/* ============================================================
+   Blockquote
+   ============================================================ */
+
+.gh-content blockquote:not([class]) {
+    padding: 1.2rem 1.5rem;
+    border-left: 4px solid var(--beer-accent);
+    background: rgba(156, 130, 94, 0.07);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--secondary-text-color);
+}
+
+body.dark-theme .gh-content blockquote:not([class]) {
+    background: rgba(156, 130, 94, 0.08);
+}
+
+/* ============================================================
+   Related posts section title
+   ============================================================ */
+
+.related-title {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    background: rgba(156, 130, 94, 0.15);
+    color: var(--beer-accent) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* ============================================================
+   ABV calculator — result card accent + value animation
+   ============================================================ */
+
+.result-card {
+    border-left: 3px solid var(--beer-accent) !important;
+}
+
+.result-value {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.result-value.updating {
+    opacity: 0;
+    transform: translateY(4px);
 }
 
 /* footer — background/border set in basics.css */

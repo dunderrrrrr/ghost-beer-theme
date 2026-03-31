@@ -30,10 +30,12 @@
 
     <div class="post-wrapper">
         <header class="post-header">
-            {{#primary_tag}}
-                <span class="post-tag">{{name}}</span>
-            {{/primary_tag}}
-            <time class="gh-article-meta" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            <div class="post-meta-row">
+                {{#primary_tag}}
+                    <span class="post-tag">{{name}}</span>
+                {{/primary_tag}}
+                <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            </div>
 
             <h2 class="post-title">
                 {{title}}
