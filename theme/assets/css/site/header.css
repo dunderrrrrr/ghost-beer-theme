@@ -11,6 +11,33 @@
     letter-spacing: 0.005em;
 }
 
+.gh-head .nav a {
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.gh-head .nav a:hover {
+    background-color: rgba(156, 130, 94, 0.12);
+    opacity: 1;
+}
+
+.gh-head .nav a[aria-current="page"],
+.gh-head .nav .nav-current a {
+    background-color: rgba(156, 130, 94, 0.18);
+    color: #9c825e;
+}
+
+body.dark-theme .gh-head .nav a:hover {
+    background-color: rgba(156, 130, 94, 0.15);
+}
+
+body.dark-theme .gh-head .nav a[aria-current="page"],
+body.dark-theme .gh-head .nav .nav-current a {
+    background-color: rgba(156, 130, 94, 0.2);
+    color: #b89a78;
+}
+
 .gh-head-btn {
     --multiplier: 1.3;
 }
