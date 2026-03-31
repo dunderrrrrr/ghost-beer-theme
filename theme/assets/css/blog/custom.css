@@ -135,3 +135,36 @@ article.post:hover {
     pointer-events: none;
     cursor: default;
 }
+
+/* Theme toggle */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.theme-toggle:hover {
+    opacity: 1;
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: transform 0.4s ease;
+}
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+body.dark-theme .theme-toggle .icon-sun { display: block; }
+body.dark-theme .theme-toggle .icon-moon { display: none; }

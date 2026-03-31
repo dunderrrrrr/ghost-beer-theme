@@ -19,3 +19,276 @@
 body:not(.post-template):not(.page-template) {
     background-image: linear-gradient(0deg, #efefef 65%, #fff);
 }
+
+/* ============================================================
+   LIGHT THEME (explicit overrides matching dark theme structure)
+   ============================================================ */
+
+/* Header */
+.gh-head {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.gh-head-logo,
+.gh-head-logo a,
+.gh-head .nav a,
+.gh-head-link,
+.gh-search,
+.nav-more-toggle {
+    color: #1a1a1a;
+}
+
+/* Dropdown */
+.gh-dropdown {
+    background-color: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 7px 20px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Post cards */
+.post-wrapper {
+    background-color: #fff;
+}
+
+.post-footer {
+    background-color: #fff;
+    border-top-color: #f0f0f0;
+}
+
+/* Card shadows */
+.u-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.u-shadow:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.13);
+}
+
+/* Related posts */
+.related-wrapper {
+    background-color: #f0f0f0;
+}
+
+/* Footer */
+.gh-foot {
+    border-top: 1px solid #e8e8e8;
+}
+
+/* ============================================================
+   DARK THEME
+   ============================================================ */
+
+body.dark-theme {
+    /* Theme-local variables */
+    --primary-text-color: #d4d4d4;
+    --secondary-text-color: #777;
+    --white-color: #1c1c1c;
+    --light-gray-color: #252525;
+    --mid-gray-color: #2e2e2e;
+    --dark-gray-color: #d4d4d4;
+    --black-color: #f0f0f0;
+    --shadow-base: 0 0 12px rgba(0, 0, 0, 0.5);
+
+    /* Ghost shared-theme-assets variables */
+    --color-primary-text: #d4d4d4;
+    --color-secondary-text: #777;
+    --color-white: #1c1c1c;
+    --color-lighter-gray: #252525;
+    --color-light-gray: #2e2e2e;
+    --color-mid-gray: #444;
+    --color-dark-gray: #aaa;
+    --color-darker-gray: #e8e8e8;
+
+    /* Bookmark / audio / file card background */
+    --background-color: #1c1c1c;
+
+    background-color: #141414;
+    color: var(--primary-text-color);
+}
+
+body.dark-theme:not(.post-template):not(.page-template) {
+    background-image: linear-gradient(0deg, #141414 65%, #191919);
+}
+
+/* Body text & links */
+body.dark-theme a {
+    color: var(--color-darker-gray);
+}
+
+/* Headings */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6 {
+    color: #f0f0f0;
+}
+
+/* Header */
+body.dark-theme .gh-head {
+    background-color: #141414;
+    border-bottom: 1px solid #272727;
+}
+
+body.dark-theme .gh-head-logo,
+body.dark-theme .gh-head-logo a,
+body.dark-theme .gh-head .nav a,
+body.dark-theme .gh-head-link,
+body.dark-theme .gh-search,
+body.dark-theme .nav-more-toggle {
+    color: #d4d4d4;
+}
+
+body.dark-theme .gh-burger::before,
+body.dark-theme .gh-burger::after {
+    background-color: #d4d4d4;
+}
+
+/* Stacked header nav separator lines */
+body.dark-theme .is-head-stacked .gh-head-menu::before,
+body.dark-theme .is-head-stacked .gh-head-menu::after {
+    background-color: #272727;
+}
+
+/* Mobile open menu */
+body.dark-theme.is-head-open #gh-head,
+body.dark-theme .is-head-open #gh-head .gh-head-actions {
+    background-color: #141414;
+}
+
+/* Dropdown */
+body.dark-theme .gh-dropdown {
+    background-color: #1c1c1c;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 7px 20px -5px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .gh-dropdown li a {
+    color: #d4d4d4 !important;
+}
+
+/* HR */
+body.dark-theme hr {
+    background-color: #2e2e2e;
+}
+
+/* Code blocks */
+body.dark-theme pre {
+    background-color: #1a1a1a;
+    border: 1px solid #2e2e2e;
+}
+
+body.dark-theme :not(pre) > code {
+    background-color: #252525;
+}
+
+/* Blockquote alt */
+body.dark-theme blockquote.kg-blockquote-alt {
+    color: #777;
+}
+
+/* Tables */
+body.dark-theme .gh-content table:not(.gist table) th {
+    background-color: #1c1c1c;
+    color: #aaa;
+}
+
+body.dark-theme .gh-content table:not(.gist table) th,
+body.dark-theme .gh-content table:not(.gist table) td {
+    border-color: #2e2e2e;
+}
+
+/* Table scroll-shadow fix (hardcoded white in shared CSS) */
+body.dark-theme .gh-content table:not(.gist table) td:first-child {
+    background-image: linear-gradient(to right, #141414 50%, rgba(20, 20, 20, 0) 100%);
+}
+
+body.dark-theme .gh-content table:not(.gist table) td:last-child {
+    background-image: linear-gradient(to left, #141414 50%, rgba(20, 20, 20, 0) 100%);
+}
+
+/* Figcaption */
+body.dark-theme figcaption {
+    color: #777;
+}
+
+body.dark-theme .gh-content figcaption a {
+    color: #aaa;
+}
+
+/* Bookmark / file / audio cards */
+body.dark-theme .kg-bookmark-card a.kg-bookmark-container,
+body.dark-theme .kg-bookmark-card a.kg-bookmark-container:hover,
+body.dark-theme .kg-file-card-container,
+body.dark-theme .kg-file-card-container:hover,
+body.dark-theme .kg-audio-card,
+body.dark-theme .kg-product-card-container {
+    background: #1c1c1c !important;
+    color: #d4d4d4 !important;
+    border-color: #2e2e2e !important;
+}
+
+body.dark-theme .kg-bookmark-card .kg-bookmark-title {
+    color: #e8e8e8;
+}
+
+body.dark-theme .kg-bookmark-card .kg-bookmark-description,
+body.dark-theme .kg-bookmark-card .kg-bookmark-metadata {
+    color: #888;
+}
+
+/* Post cards */
+body.dark-theme .post-wrapper,
+body.dark-theme .post-footer {
+    background-color: #1c1c1c;
+}
+
+body.dark-theme .post-footer {
+    border-top-color: #2e2e2e;
+}
+
+body.dark-theme .post-title,
+body.dark-theme .post-excerpt {
+    color: #d4d4d4;
+}
+
+body.dark-theme .post-more {
+    color: #d4d4d4;
+}
+
+body.dark-theme .post-author-image {
+    border-color: #1c1c1c;
+}
+
+/* Card shadows */
+body.dark-theme .u-shadow {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .u-shadow:hover {
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-theme .u-placeholder {
+    background-color: #252525;
+}
+
+/* Related posts */
+body.dark-theme .related-wrapper {
+    background-color: #111;
+}
+
+/* Footer */
+body.dark-theme .gh-foot {
+    background-color: #0d0d0d;
+    border-top: 1px solid #222;
+    color: #888;
+}
+
+body.dark-theme .gh-foot a {
+    color: #aaa;
+}
+
+/* Toggle icon coloring */
+body.dark-theme .theme-toggle {
+    color: #d4d4d4;
+}
