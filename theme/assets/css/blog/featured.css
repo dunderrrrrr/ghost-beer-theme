@@ -12,7 +12,7 @@
 }
 
 .post-feed .featured.no-image .post-link::before {
-    background: var(--tag-color, var(--ghost-accent-color));
+    background: var(--tag-color, var(--beer-accent));
 }
 
 .post-feed .featured .post-media {

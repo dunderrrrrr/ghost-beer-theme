@@ -30,7 +30,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     line-height: 1;
-    color: var(--tag-color, var(--ghost-accent-color));
+    color: var(--tag-color, var(--beer-accent));
     text-transform: uppercase;
     letter-spacing: 0.005em;
 }

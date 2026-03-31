@@ -15,7 +15,7 @@
 }
 
 .gh-article-tag {
-    color: var(--tag-color, var(--ghost-accent-color));
+    color: var(--tag-color, var(--beer-accent));
 }
 
 .gh-article-title {
