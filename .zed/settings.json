@@ -1,0 +1,7 @@
+{
+  "project_name": "Beer",
+  "file_scan_exclusions": [
+    "**/*.min.js*",
+    "theme/assets/built/**",
+  ]
+}
