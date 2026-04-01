@@ -3,12 +3,14 @@
 })();
 
 (function () {
-    var toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
+    var toggles = document.querySelectorAll('.theme-toggle');
+    if (!toggles.length) return;
 
-    toggle.addEventListener('click', function () {
-        var isDark = document.body.classList.toggle('dark-theme');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    toggles.forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+            var isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
     });
 })();
 
