@@ -41,6 +41,7 @@
             echo "  ghost-down      Stop Ghost"
             echo "  ghost-logs      Follow Ghost logs"
             echo "  gscan           Validate theme"
+            echo "  ghost-deploy    Bump version, build zip, upload to production"
             echo ""
             echo "Admin: http://localhost:2368/ghost"
             echo ""
@@ -102,8 +103,80 @@
               fi
             }
 
+            ghost-deploy() {
+              local pkg="$THEME_DIR/package.json"
+              local zip="$THEME_DIR/dist/beer.zip"
+
+              # Load .env from project root
+              if [ -f "$PRJ_ROOT/.env" ]; then
+                set -a; source "$PRJ_ROOT/.env"; set +a
+              fi
+
+              local GHOST_ADMIN_URL="$API_URL"
+              local GHOST_ADMIN_KEY="$ADMIN_API_KEY"
+
+              # Require env vars
+              if [ -z "$GHOST_ADMIN_URL" ] || [ -z "$GHOST_ADMIN_KEY" ]; then
+                echo "Error: API_URL and ADMIN_API_KEY must be set in .env"
+                return 1
+              fi
+
+              # Bump patch version in package.json
+              local old_ver new_ver
+              old_ver=$(node -p "require('$pkg').version")
+              new_ver=$(node -e "
+                const v = '$old_ver'.split('.').map(Number);
+                v[2]++;
+                console.log(v.join('.'));
+              ")
+              node -e "
+                const fs = require('fs');
+                const p = JSON.parse(fs.readFileSync('$pkg', 'utf8'));
+                p.version = '$new_ver';
+                fs.writeFileSync('$pkg', JSON.stringify(p, null, 4) + '\n');
+              "
+              echo "Bumped version: $old_ver → $new_ver"
+
+              # Build zip
+              echo "Building zip..."
+              (cd "$THEME_DIR" && npm run zip) || return 1
+
+              # Generate JWT for Ghost Admin API
+              local key_id key_secret token issued_at
+              key_id=$(echo "$GHOST_ADMIN_KEY" | cut -d: -f1)
+              key_secret=$(echo "$GHOST_ADMIN_KEY" | cut -d: -f2)
+              issued_at=$(date +%s)
+              token=$(node -e "
+                const crypto = require('crypto');
+                const header = Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT',kid:'$key_id'})).toString('base64url');
+                const payload = Buffer.from(JSON.stringify({iat:$issued_at,exp:$issued_at+300,aud:'/admin/'})).toString('base64url');
+                const sig = crypto.createHmac('sha256', Buffer.from('$key_secret','hex'))
+                  .update(header+'.'+payload).digest('base64url');
+                console.log(header+'.'+payload+'.'+sig);
+              ")
+
+              # Upload theme
+              echo "Uploading theme..."
+              local response http_code
+              response=$(curl -s -w "\n%{http_code}" \
+                -X POST \
+                "$GHOST_ADMIN_URL/ghost/api/admin/themes/upload" \
+                -H "Authorization: Ghost $token" \
+                -F "file=@$zip;type=application/zip")
+              http_code=$(echo "$response" | tail -1)
+              body=$(echo "$response" | head -n -1)
+
+              if [ "$http_code" = "200" ]; then
+                echo "Theme uploaded successfully (v$new_ver)."
+              else
+                echo "Upload failed (HTTP $http_code):"
+                echo "$body"
+                return 1
+              fi
+            }
+
             # Export functions so subshells can see them (bash only; fish users: wrap in funcs)
-            export -f ghost-install ghost-up ghost-down ghost-logs gscan _ghost-link-theme 2>/dev/null || true
+            export -f ghost-install ghost-up ghost-down ghost-logs gscan _ghost-link-theme ghost-deploy 2>/dev/null || true
           '';
         };
       });

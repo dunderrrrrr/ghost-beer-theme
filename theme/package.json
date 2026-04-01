@@ -1,7 +1,7 @@
 {
     "name": "beer",
     "description": "A Beer theme",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "private": true,
     "engines": {
         "ghost": ">=5.0.0"
@@ -17,7 +17,7 @@
         "theme",
         "ghost-theme"
     ],
-    "docs": "https://ruby.ghost.io/about/",
+    "docs": "",
     "config": {
         "posts_per_page": 12,
         "image_sizes": {
@@ -44,7 +44,11 @@
         "custom": {
             "navigation_layout": {
                 "type": "select",
-                "options": ["Logo on the left", "Logo in the middle", "Stacked"],
+                "options": [
+                    "Logo on the left",
+                    "Logo in the middle",
+                    "Stacked"
+                ],
                 "default": "Logo in the middle"
             },
             "title_font": {

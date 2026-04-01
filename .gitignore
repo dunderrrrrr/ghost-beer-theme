@@ -1,3 +1,4 @@
+.env
 .ghost-local/
 .npm-global/
 theme/node_modules/
