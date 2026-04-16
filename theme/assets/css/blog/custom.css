@@ -5,6 +5,9 @@
     max-width: 100% !important;
     white-space: normal !important;
 }
+table.table-recipe td:last-child {
+    white-space: nowrap !important;
+}
 table.table-recipe {
     font-family: inherit !important;
     background: none !important;
