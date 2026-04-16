@@ -615,3 +615,32 @@ body.dark-theme .theme-toggle .icon-moon {
         display: none !important;
     }
 }
+#htmx-loading {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 3px !important;
+    width: 0;
+    background: var(--ghost-accent-color, #ff6600) !important;
+    z-index: 99999 !important;
+    transition: width 2s ease;
+    opacity: 1;
+}
+
+#htmx-loading.active {
+    width: 80%;
+}
+
+#htmx-loading.complete {
+    width: 100%;
+    opacity: 0;
+    transition:
+        width 0.2s ease,
+        opacity 0.4s ease 0.2s;
+}
+
+#htmx-loading.reset {
+    width: 0;
+    opacity: 0;
+    transition: none;
+}

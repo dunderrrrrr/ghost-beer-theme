@@ -115,3 +115,34 @@ document.addEventListener("htmx:pushedIntoHistory", updateNavCurrent);
     }
   };
 })();
+
+// htmx loading indicator
+(function () {
+  var bar = document.getElementById("htmx-loading");
+  if (!bar) return;
+  var minDuration = 300;
+  var startTime;
+  var completeTimer;
+
+  document.addEventListener("htmx:beforeRequest", function () {
+    clearTimeout(completeTimer);
+    bar.className = "reset";
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        startTime = Date.now();
+        bar.className = "active";
+      });
+    });
+  });
+
+  document.addEventListener("htmx:afterSettle", function () {
+    var elapsed = Date.now() - startTime;
+    var remaining = Math.max(0, minDuration - elapsed);
+    completeTimer = setTimeout(function () {
+      bar.className = "complete";
+      setTimeout(function () {
+        bar.className = "reset";
+      }, 200);
+    }, remaining);
+  });
+})();
