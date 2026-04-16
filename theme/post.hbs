@@ -10,7 +10,7 @@
             <span class="gh-article-meta"{{#if primary_tag.accent_color}} style="--tag-color: {{primary_tag.accent_color}};"{{/if}}>
             {{{t "{authors}" authors=(authors) }}} @ <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time> —
                 {{#if primary_tag}}
-{{{t "{primaryTag}" primaryTag=(concat "<a class=\"gh-article-tag\" hx-get=\"" primary_tag.url "\" hx-target=\"main\" hx-swap=\"innerHTML\" hx-select=\"main\" hx-push-url=\"true\">" primary_tag.name "</a>")}}}
+{{{t "{primaryTag}" primaryTag=(concat "<a class=\"gh-article-tag\" hx-get=\"" primary_tag.url "\" hx-target=\".site-content\" hx-swap=\"outerHTML\" hx-select=\".site-content\" hx-push-url=\"true\">" primary_tag.name "</a>")}}}
                 {{/if}}
             </span>
 

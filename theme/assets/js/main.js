@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var url = new URL(a.getAttribute("href"));
     var pathname = url.pathname;
     a.setAttribute("hx-get", pathname);
-    a.setAttribute("hx-target", "main");
-    a.setAttribute("hx-swap", "innerHTML");
-    a.setAttribute("hx-select", "main");
+    a.setAttribute("hx-target", ".site-content");
+    a.setAttribute("hx-swap", "outerHTML");
+    a.setAttribute("hx-select", ".site-content");
     a.setAttribute("hx-push-url", "true");
     a.removeAttribute("href");
     htmx.process(a);

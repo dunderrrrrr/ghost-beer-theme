@@ -23,9 +23,9 @@
                 <div class="gh-head-brand-wrapper">
                     <a  class="gh-head-logo"
                         hx-get="{{@site.url}}"
-                        hx-target="main"
-                        hx-swap="main"
-                        hx-select="main"
+                        hx-target=".site-content"
+                        hx-swap="outerHTML"
+                        hx-select=".site-content"
                         hx-push-url="true"
                     >
                         {{#if @site.logo}}

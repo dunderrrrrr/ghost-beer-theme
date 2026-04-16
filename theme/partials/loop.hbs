@@ -1,9 +1,9 @@
 <article class="{{post_class}} u-shadow"{{#if primary_tag.accent_color}} style="--tag-color: {{primary_tag.accent_color}};"{{/if}}>
 <a class="post-link"
     hx-get="{{url}}"
-    hx-target="main"
-    hx-swap="main"
-    hx-select="main"
+    hx-target=".site-content"
+    hx-swap="outerHTML"
+    hx-select=".site-content"
     hx-push-url="true"
 >
     {{#if feature_image}}
