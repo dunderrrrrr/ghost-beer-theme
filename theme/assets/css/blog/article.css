@@ -30,6 +30,7 @@
 
 .gh-article-tag:hover {
     background: rgba(156, 130, 94, 0.25);
+    cursor: pointer;
 }
 
 body.dark-theme .gh-article-tag {

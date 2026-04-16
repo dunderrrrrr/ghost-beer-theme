@@ -12,6 +12,7 @@
 
 .post-link:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 .post-image {

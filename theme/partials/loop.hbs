@@ -1,5 +1,11 @@
 <article class="{{post_class}} u-shadow"{{#if primary_tag.accent_color}} style="--tag-color: {{primary_tag.accent_color}};"{{/if}}>
-<a class="post-link" href="{{url}}">
+<a class="post-link"
+    hx-get="{{url}}"
+    hx-target="main"
+    hx-swap="main"
+    hx-select="main"
+    hx-push-url="true"
+>
     {{#if feature_image}}
         {{#if featured}}
             <img

@@ -241,6 +241,7 @@ article.post:hover .post-footer::after {
 .gh-head-logo:hover {
     color: var(--beer-accent) !important;
     opacity: 1;
+    cursor: pointer;
 }
 
 /* ============================================================
