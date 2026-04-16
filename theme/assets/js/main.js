@@ -35,6 +35,42 @@
   });
 })();
 
+// htmx for navigation since ghost is ghost
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".gh-head-menu a[href]").forEach(function (a) {
+    var url = new URL(a.getAttribute("href"));
+    var pathname = url.pathname;
+    a.setAttribute("hx-get", pathname);
+    a.setAttribute("hx-target", "main");
+    a.setAttribute("hx-swap", "innerHTML");
+    a.setAttribute("hx-select", "main");
+    a.setAttribute("hx-push-url", "true");
+    a.removeAttribute("href");
+    htmx.process(a);
+
+    document.addEventListener("htmx:afterSettle", function () {
+      document.body.classList.remove("is-head-open");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  updateNavCurrent();
+});
+
+function updateNavCurrent() {
+  document.querySelectorAll(".gh-head-menu li").forEach(function (li) {
+    var a = li.querySelector("a[hx-get]");
+    if (a) {
+      li.classList.toggle(
+        "nav-current",
+        a.getAttribute("hx-get") === window.location.pathname,
+      );
+    }
+  });
+}
+
+document.addEventListener("htmx:pushedIntoHistory", updateNavCurrent);
+
 // Reading progress bar
 (function () {
   var bar = document.getElementById("reading-progress");

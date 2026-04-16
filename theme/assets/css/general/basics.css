@@ -290,6 +290,7 @@ body.dark-theme .nav-more-toggle {
 body.dark-theme .gh-head .nav a:hover {
     color: var(--beer-accent-light);
     opacity: 1;
+    cursor: pointer;
 }
 
 body.dark-theme .gh-burger::before,
