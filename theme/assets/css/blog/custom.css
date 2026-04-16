@@ -1,4 +1,10 @@
 /* Recipe table */
+.gh-content table.table-recipe {
+    display: table !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+}
 table.table-recipe {
     font-family: inherit !important;
     background: none !important;
@@ -643,4 +649,8 @@ body.dark-theme .theme-toggle .icon-moon {
     width: 0;
     opacity: 0;
     transition: none;
+}
+
+.term-name {
+    text-transform: lowercase;
 }
