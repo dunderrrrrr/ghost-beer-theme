@@ -146,3 +146,8 @@ document.addEventListener("htmx:pushedIntoHistory", updateNavCurrent);
     }, remaining);
   });
 })();
+
+// lazy load images
+document.querySelectorAll("img").forEach((img) => {
+  img.loading = "lazy";
+});
