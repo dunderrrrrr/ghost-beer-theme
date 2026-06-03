@@ -657,3 +657,27 @@ body.dark-theme .theme-toggle .icon-moon {
 .term-name {
     text-transform: lowercase;
 }
+
+.post-tag-done {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--beer-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.post-tag-done::after {
+    content: "";
+    width: 13px;
+    height: 8px;
+    border-left: 2.5px solid #fff;
+    border-bottom: 2.5px solid #fff;
+    transform: rotate(-45deg) translate(1px, -1px);
+    border-radius: 1px;
+}

@@ -17,6 +17,9 @@
         {{else}}
         <figure class="post-media">
             <div class="u-placeholder same-height rectangle">
+            {{#has tag="klar"}}
+                <span class="post-tag-done"></span>
+            {{/has}}
                 <img
                     class="post-image u-object-fit"
                     srcset="{{img_url feature_image size="s"}} 400w,
