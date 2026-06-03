@@ -669,6 +669,7 @@ body.dark-theme .theme-toggle .icon-moon {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     z-index: 10;
 }
 
@@ -680,4 +681,25 @@ body.dark-theme .theme-toggle .icon-moon {
     border-bottom: 2.5px solid #fff;
     transform: rotate(-45deg) translate(1px, -1px);
     border-radius: 1px;
+}
+
+.post-tag-done::before {
+    content: "Den här batchen är färdig! 🍻";
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: #1a1a1a;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.post-tag-done:hover::before {
+    opacity: 1;
 }
