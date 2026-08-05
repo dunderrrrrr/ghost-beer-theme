@@ -58,13 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function updateNavCurrent() {
-  document.querySelectorAll(".gh-head-menu li").forEach(function (li) {
+  var onTagPage = /^\/tag\//.test(window.location.pathname);
+
+  document.querySelectorAll(".gh-head-menu li").forEach(function (li, index) {
     var a = li.querySelector("a[hx-get]");
     if (a) {
-      li.classList.toggle(
-        "nav-current",
-        a.getAttribute("hx-get") === window.location.pathname,
-      );
+      var isCurrent = a.getAttribute("hx-get") === window.location.pathname;
+      if (index === 0 && onTagPage) isCurrent = true;
+      li.classList.toggle("nav-current", isCurrent);
     }
   });
 }
