@@ -619,7 +619,9 @@ body.dark-theme .gh-content blockquote:not([class]) {
 }
 
 /* disable annoying lightbox */
-.kg-image {
+.kg-image,
+.kg-gallery-image,
+.kg-gallery-image img {
     pointer-events: none;
     cursor: default;
 }
