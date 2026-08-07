@@ -1,5 +1,5 @@
 {{#get "posts" limit="1"}}
-{{#get "tags" filter="slug:-klar" limit="all" order="name asc" include="count.posts"}}
+{{#get "tags" filter="slug:-klar" limit="all" order="name asc"}}
     {{#if tags}}
     <nav class="tag-filter">
         <button class="tag-filter-link{{#unless ../../active_tag_slug}} tag-filter-active{{/unless}}"
@@ -11,14 +11,16 @@
             hx-push-url="true"
         >{{t "Alla"}} <span class="tag-filter-count">({{../pagination.total}})</span></button>
         {{#foreach tags}}
-            <button class="tag-filter-link{{#match slug ../../../active_tag_slug}} tag-filter-active{{/match}}"
+            {{#get "posts" filter="tag:{{slug}}" limit="1"}}
+            <button class="tag-filter-link{{#match ../slug ../../../../active_tag_slug}} tag-filter-active{{/match}}"
                 type="button"
-                hx-get="{{url}}"
+                hx-get="{{../url}}"
                 hx-target=".site-content"
                 hx-swap="outerHTML"
                 hx-select=".site-content"
                 hx-push-url="true"
-            >{{name}} <span class="tag-filter-count">({{count.posts}})</span></button>
+            >{{../name}} <span class="tag-filter-count">({{pagination.total}})</span></button>
+            {{/get}}
         {{/foreach}}
     </nav>
     {{/if}}
