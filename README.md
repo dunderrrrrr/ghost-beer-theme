@@ -14,7 +14,7 @@ $ ghost-down # stop local ghost instance
 $ ghost-deploy # uploads theme to prod ghost instance
 ```
 
-Add this to `.env` (prod envs):
+Add this to `.env`:
 ```
 API_URL=""
 CONTENT_API_KEY="" 
