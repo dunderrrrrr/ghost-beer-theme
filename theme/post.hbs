@@ -25,11 +25,28 @@
 
         <div class="gh-content gh-canvas">
             {{content}}
+
+            <script>
+                var remark_config = {
+                   	host: "https://c.bryggis.se",
+                   	site_id: "bryggis",
+                   	url: "https://bryggis.se{{url}}",
+      		theme: 'dark',
+      		show_email_subscription: false,
+      		simple_view: true,
+      		no_footer: true
+                }
+            </script>
+            <script>!function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),d=n.head||n.body;r.type="module",r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+".mjs",d.appendChild(r)}}(remark_config.components||["embed"],document);</script>
+            <div id="remark42">Laddar kommentarer...</div>
+
         </div>
 
     </article>
 
     {{> "post-navigation"}}
+
+
 
     {{#if comments}}
         <div class="gh-comments gh-canvas">
