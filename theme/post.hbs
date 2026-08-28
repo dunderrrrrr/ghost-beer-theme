@@ -27,20 +27,49 @@
             {{content}}
 
             <hr style="margin: 30px 0px 10px 0px;">
+            <div id="remark42" data-remark-url="https://bryggis.se{{url}}">Laddar kommentarer...</div>
             <script>
-                var remark_config = {
-                   	host: "https://c.bryggis.se",
-                   	site_id: "bryggis",
-                   	url: "https://bryggis.se{{url}}",
-      		theme: 'dark',
-      		show_email_subscription: false,
-      		simple_view: true,
-      		no_footer: true,
-            style: "https://bryggis.se/remark-custom.css"
-                }
+                (function () {
+                    function buildConfig(el) {
+                        return {
+                            host: "https://c.bryggis.se",
+                            site_id: "bryggis",
+                            url: el.getAttribute('data-remark-url'),
+                            theme: 'dark',
+                            show_email_subscription: false,
+                            simple_view: true,
+                            no_footer: true,
+                            style: "https://bryggis.se/remark-custom.css"
+                        };
+                    }
+
+                    function mount() {
+                        var el = document.getElementById('remark42');
+                        if (!el) return;
+                        var config = buildConfig(el);
+                        window.remark_config = config;
+
+                        if (window.REMARK42 && typeof window.REMARK42.createInstance === 'function') {
+                            window.REMARK42.createInstance(config);
+                        } else if (!window.__remark42ScriptLoading) {
+                            window.__remark42ScriptLoading = true;
+                            var script = document.createElement('script');
+                            script.type = 'module';
+                            script.async = true;
+                            script.defer = true;
+                            script.src = config.host + '/web/embed.mjs';
+                            (document.head || document.body).appendChild(script);
+                        }
+                    }
+
+                    mount();
+
+                    if (!window.__remark42HtmxBound) {
+                        window.__remark42HtmxBound = true;
+                        document.addEventListener('htmx:afterSwap', mount);
+                    }
+                })();
             </script>
-            <script>!function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),d=n.head||n.body;r.type="module",r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+".mjs",d.appendChild(r)}}(remark_config.components||["embed"],document);</script>
-            <div id="remark42">Laddar kommentarer...</div>
 
         </div>
 
