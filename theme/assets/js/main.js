@@ -152,3 +152,123 @@ document.addEventListener("htmx:pushedIntoHistory", updateNavCurrent);
 document.querySelectorAll("img").forEach((img) => {
   img.loading = "lazy";
 });
+
+// Fade/slide transition between htmx page navigations
+(function () {
+  var prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (prefersReducedMotion) return;
+
+  var skipTransition = false;
+
+  document.body.addEventListener("htmx:beforeRequest", function (e) {
+    if (!e.target.closest("[hx-target='.site-content']")) return;
+    if (e.target.closest(".tag-filter-link")) {
+      skipTransition = true;
+      return;
+    }
+    skipTransition = false;
+    var content = document.querySelector(".site-content");
+    if (content) content.classList.add("is-transitioning");
+  });
+
+  document.body.addEventListener("htmx:afterSwap", function () {
+    if (skipTransition) return;
+    var content = document.querySelector(".site-content");
+    if (!content) return;
+    // new node swapped in — it's already faded out via inherited class,
+    // flip it back on the next frame so the browser animates the fade-in
+    content.classList.add("is-transitioning");
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        content.classList.remove("is-transitioning");
+      });
+    });
+  });
+})();
+
+// Header backdrop on scroll
+(function () {
+  var head = document.getElementById("gh-head");
+  if (!head) return;
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      head.classList.toggle("is-scrolled", window.scrollY > 8);
+    },
+    { passive: true },
+  );
+})();
+
+// Post card tilt + cursor glow
+(function () {
+  var prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (prefersReducedMotion) return;
+
+  var maxTilt = 6;
+
+  function bindCardTilt() {
+    document.querySelectorAll(".post-feed article.post").forEach(function (card) {
+      if (card.dataset.tiltBound) return;
+      card.dataset.tiltBound = "true";
+
+      card.addEventListener("mousemove", function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var px = x / rect.width;
+        var py = y / rect.height;
+
+        card.style.setProperty("--tilt-x", (px - 0.5) * maxTilt * 2 + "deg");
+        card.style.setProperty("--tilt-y", (0.5 - py) * maxTilt * 2 + "deg");
+        card.style.setProperty("--glow-x", px * 100 + "%");
+        card.style.setProperty("--glow-y", py * 100 + "%");
+      });
+
+      card.addEventListener("mouseleave", function () {
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+      });
+    });
+  }
+
+  bindCardTilt();
+  document.addEventListener("htmx:afterSettle", bindCardTilt);
+})();
+
+// Cards fade/slide in as they scroll into view
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (prefersReducedMotion) return;
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+  );
+
+  function bindReveal() {
+    document.querySelectorAll(".post-feed article.post").forEach(function (card) {
+      if (card.dataset.revealBound) return;
+      card.dataset.revealBound = "true";
+      card.classList.add("reveal");
+      observer.observe(card);
+    });
+  }
+
+  bindReveal();
+  document.addEventListener("htmx:afterSettle", bindReveal);
+})();

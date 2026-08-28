@@ -201,11 +201,18 @@ body.dark-theme .post-tag:hover {
     transition:
         background-color 0.2s ease,
         color 0.2s ease,
-        border-color 0.2s ease;
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
 }
 
 .tag-filter-link:hover {
     background: rgba(156, 130, 94, 0.25);
+    transform: translateY(-2px);
+}
+
+.tag-filter-link:active {
+    transform: translateY(0) scale(0.96);
 }
 
 .tag-filter-link.tag-filter-active {
@@ -217,6 +224,21 @@ body.dark-theme .post-tag:hover {
 
 .tag-filter-link.tag-filter-active:hover {
     background: var(--beer-accent);
+    box-shadow: 0 4px 14px rgba(156, 130, 94, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tag-filter-link {
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .tag-filter-link:hover,
+    .tag-filter-link:active {
+        transform: none;
+    }
 }
 
 .tag-filter-count {
@@ -273,13 +295,73 @@ article.post:hover {
     }
 }
 
-/* Card lift on hover — index feed only */
+/* Card tilt + cursor glow on hover — index feed only */
+.post-feed {
+    perspective: 1200px;
+}
+
 .post-feed article.post {
+    position: relative;
+    transform: translateY(0) rotateX(0) rotateY(0);
     transition: transform 0.25s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .post-feed article.post:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+}
+
+.post-feed article.post::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    border-radius: inherit;
+    background: radial-gradient(
+        320px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        rgba(156, 130, 94, 0.16),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.post-feed article.post:hover::before {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .post-feed article.post {
+        transition: none;
+    }
+
+    .post-feed article.post:hover {
+        transform: none;
+    }
+}
+
+/* Cards fade/slide into view on scroll */
+.post-feed article.post.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+.post-feed article.post.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .post-feed article.post.reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* Accent line animates in at bottom of card on hover */
@@ -313,6 +395,52 @@ article.post:hover .post-footer::after {
     color: var(--beer-accent) !important;
     opacity: 1;
     cursor: pointer;
+}
+
+/* Header gains a blurred backdrop + shadow once the page scrolls */
+#gh-head {
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        backdrop-filter 0.3s ease;
+}
+
+#gh-head.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+body.dark-theme #gh-head.is-scrolled {
+    background-color: rgba(15, 15, 15, 0.85);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Icon buttons get a soft amber glow on hover */
+.gh-search.gh-icon-btn,
+.theme-toggle.gh-icon-btn {
+    position: relative;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.gh-search.gh-icon-btn:hover,
+.theme-toggle.gh-icon-btn:hover {
+    background-color: rgba(156, 130, 94, 0.12);
+    box-shadow: 0 0 0 6px rgba(156, 130, 94, 0.08);
+}
+
+body.dark-theme .gh-search.gh-icon-btn:hover,
+body.dark-theme .theme-toggle.gh-icon-btn:hover {
+    background-color: rgba(184, 154, 120, 0.15);
+    box-shadow: 0 0 0 6px rgba(184, 154, 120, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #gh-head {
+        transition: none;
+    }
 }
 
 /* ============================================================
@@ -752,4 +880,29 @@ body.dark-theme .post-tag-done {
 body.dark-theme .post-tag-done::before {
     border-left-color: #b89a78;
     border-bottom-color: #b89a78;
+}
+
+/* Page transition between htmx navigations */
+.site-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.22s ease,
+        transform 0.22s ease;
+}
+
+.site-content.is-transitioning {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-content {
+        transition: none;
+    }
+
+    .site-content.is-transitioning {
+        opacity: 1;
+        transform: none;
+    }
 }
