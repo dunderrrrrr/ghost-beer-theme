@@ -17,9 +17,6 @@
         {{else}}
         <figure class="post-media">
             <div class="u-placeholder same-height rectangle">
-            {{#has tag="klar"}}
-                <span class="post-tag-done"></span>
-            {{/has}}
                 <img
                     class="post-image u-object-fit"
                     srcset="{{img_url feature_image size="s"}} 400w,
@@ -44,6 +41,9 @@
                     <span class="post-tag">{{name}}</span>
                 {{/primary_tag}}
                 <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                {{#has tag="klar"}}
+                    <span class="post-tag-done">Klar</span>
+                {{/has}}
             </div>
 
             <h2 class="post-title">
