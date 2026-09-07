@@ -1,5 +1,5 @@
 {{#get "posts" limit="1"}}
-{{#get "tags" filter="slug:-klar" limit="all" order="name asc"}}
+{{#get "tags" filter="slug:-ongoing+slug:-klar" limit="all" order="name asc"}}
     {{#if tags}}
     <nav class="tag-filter">
         <button class="tag-filter-link{{#unless ../../active_tag_slug}} tag-filter-active{{/unless}}"

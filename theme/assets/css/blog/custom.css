@@ -813,6 +813,47 @@ body.dark-theme .post-tag-done::before {
     border-bottom-color: #b89a78;
 }
 
+.post-tag-ongoing {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: auto;
+    color: var(--beer-accent);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.post-tag-ongoing::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--beer-accent);
+    flex-shrink: 0;
+    animation: post-tag-ongoing-blink 1.4s ease-in-out infinite;
+}
+@keyframes post-tag-ongoing-blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.25;
+    }
+}
+
+body.dark-theme .post-tag-ongoing {
+    color: #b89a78;
+}
+
+body.dark-theme .post-tag-ongoing::before {
+    border-left-color: #b89a78;
+    border-bottom-color: #b89a78;
+}
+
 /* Page transition between htmx navigations */
 .site-content {
     opacity: 1;

@@ -41,6 +41,9 @@
                     <span class="post-tag">{{name}}</span>
                 {{/primary_tag}}
                 <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                {{#has tag="ongoing"}}
+                    <span class="post-tag-ongoing">Pågående
+                {{/has}}
                 {{#has tag="klar"}}
                     <span class="post-tag-done">Klar</span>
                 {{/has}}
