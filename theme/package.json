@@ -1,7 +1,7 @@
 {
     "name": "beer",
     "description": "A Beer theme",
-    "version": "1.0.20",
+    "version": "1.0.21",
     "private": true,
     "engines": {
         "ghost": ">=5.0.0"
