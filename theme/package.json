@@ -19,7 +19,7 @@
   ],
   "docs": "",
   "config": {
-    "posts_per_page": 12,
+    "posts_per_page": 500,
     "image_sizes": {
       "xs": {
         "width": 150
