@@ -14,7 +14,7 @@
       {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            nodejs_22
+            nodejs
             python3
             python3Packages.setuptools
             gcc
