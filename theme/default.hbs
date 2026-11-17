@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
     {{ghost_head}}
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="5133e070-eb7f-4fe2-b448-ddf522b7a46c"></script>
 </head>
 
 <body class="{{body_class}}{{{block "body_class"}}} is-head-{{#match @custom.navigation_layout "Logo on the left"}}left-logo{{else match @custom.navigation_layout "Logo in the middle"}}middle-logo{{else}}stacked{{/match}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Elegant serif"}} has-serif-body{{/match}}">
